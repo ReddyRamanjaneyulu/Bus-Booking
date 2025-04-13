@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h2 class="text-center mb-4">Edit Bus</h2>
+        
+        <form method="POST" class="bg-light p-4 rounded shadow-sm">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <div class="form-group mb-3">
+                <label for="bus_name" class="form-label">Bus Name</label>
+                <input type="text" id="bus_name" name="bus_name" class="form-control" value="{{ bus.name }}" required>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="route" class="form-label">Route</label>
+                <input type="text" id="route" name="route" class="form-control" value="{{ bus.route }}" required>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="available_seats" class="form-label">Available Seats</label>
+                <input type="number" id="available_seats" name="available_seats" class="form-control" value="{{ bus.available_seats }}" required>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Update Bus</button>
+            </div>
+        </form>
+
+        <div class="mt-4 text-center">
+            <a href="{{ url_for('admin_panel') }}" class="btn btn-secondary">Back to Admin Panel</a>
+        </div>
+    </div>
+{% endblock %}

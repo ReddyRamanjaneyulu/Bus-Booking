@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="card shadow-lg rounded-lg border-0">
+        <div class="card-header bg-gradient-primary text-dark d-flex align-items-center">
+            <h3 class="mb-0"><i class="fas fa-ticket-alt mr-2"></i>Book Bus: {{ bus.name }}</h3>
+        </div>
+        <div class="card-body bg-light">
+            <form method="POST">
+                <!-- CSRF Token -->
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+                <div class="mb-3">
+                    <p><i class="fas fa-route mr-2 text-info"></i><strong>Route:</strong> {{ bus.source }} ➝ {{ bus.destination }}</p>
+                    <p><i class="fas fa-chair mr-2 text-success"></i><strong>Available Seats:</strong> {{ bus.available_seats }}</p>
+                </div>
+
+                {% if bus.available_seats > 0 %}
+                    <button type="submit" class="btn btn-success btn-lg shadow-sm">
+                        <i class="fas fa-check-circle mr-1"></i>Confirm Booking
+                    </button>
+                {% else %}
+                    <div class="alert alert-danger" role="alert">
+                        <i class="fas fa-times-circle"></i> No seats available for this bus.
+                    </div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

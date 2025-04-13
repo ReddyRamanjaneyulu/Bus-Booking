@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-5 text-center display-4 font-weight-bold">Admin Dashboard</h2>
+
+    <!-- Users Section -->
+    <div class="mb-5">
+        <h3 class="mb-3 text-primary">👤 Users</h3>
+        <table class="table table-hover shadow-sm">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>
+                        <a href="{{ url_for('delete_user', user_id=user.id) }}" class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash-alt"></i> Delete
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Buses Section -->
+    <div class="mb-5">
+        <h3 class="mb-3 text-success">🚌 Buses</h3>
+        <table class="table table-hover shadow-sm">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Bus Name</th>
+                    <th>Route</th>
+                    <th>Available Seats</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for bus in buses %}
+                <tr>
+                    <td>{{ bus.name }}</td>
+                    <td>{{ bus.source }} to {{ bus.destination }}</td>
+                    <td>{{ bus.available_seats }}</td>
+                    <td>
+                        <a href="{{ url_for('edit_bus', bus_id=bus.id) }}" class="btn btn-warning btn-sm">
+                            <i class="fas fa-edit"></i> Edit
+                        </a>
+                        <a href="{{ url_for('delete_bus', bus_id=bus.id) }}" class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash-alt"></i> Delete
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Add Route Form -->
+    <div class="mb-5 p-4 border rounded bg-light shadow-sm">
+        <h4 class="mb-4 text-info">➕ Add New Route</h4>
+        <form action="{{ url_for('add_route') }}" method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <div class="form-group">
+                <label for="source">Source</label>
+                <input type="text" class="form-control" id="source" name="source" placeholder="e.g., City A" required>
+            </div>
+            <div class="form-group">
+                <label for="destination">Destination</label>
+                <input type="text" class="form-control" id="destination" name="destination" placeholder="e.g., City B" required>
+            </div>
+            <button type="submit" class="btn btn-primary mt-2">
+                <i class="fas fa-plus-circle"></i> Add Route
+            </button>
+        </form>
+    </div>
+
+    <!-- Add New Bus Form -->
+    <div class="mb-5 p-4 border rounded bg-light shadow-sm">
+        <h4 class="mb-4 text-success">➕ Add New Bus</h4>
+        <form action="{{ url_for('add_bus') }}" method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <div class="form-group">
+                <label for="bus_name">Bus Name</label>
+                <input type="text" class="form-control" id="bus_name" name="bus_name" placeholder="e.g., Sunrise Express" required>
+            </div>
+            <div class="form-group">
+                <label for="route_id">Route</label>
+                <select class="form-control" id="route_id" name="route_id" required>
+                    {% for route in routes %}
+                    <option value="{{ route.id }}">{{ route.source }} to {{ route.destination }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="available_seats">Available Seats</label>
+                <input type="number" class="form-control" id="available_seats" name="available_seats" min="1" required>
+            </div>
+            <button type="submit" class="btn btn-success mt-2">
+                <i class="fas fa-bus"></i> Add Bus
+            </button>
+        </form>
+    </div>
+
+    <!-- Back to Home -->
+    <div class="text-center mt-4">
+        <a href="{{ url_for('home') }}" class="btn btn-outline-primary">
+            <i class="fas fa-home"></i> Back to Home
+        </a>
+    </div>
+</div>
+{% endblock %}

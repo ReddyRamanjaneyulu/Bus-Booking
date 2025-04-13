@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Hero Section Fullscreen -->
+<section class="hero bg-image text-white d-flex justify-content-center align-items-center" 
+         style="background-image: url('https://imgs.search.brave.com/yyOg4MUbAcRVNyUJ8TLBAEhGVr4PprN5zYAzU4_7hPM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzA3LzUzLzIwLzgy/LzM2MF9GXzc1MzIw/ODIzM18ydEZqeWJk/eUxDVFUxMk1FSmZn/dVNKS0J0bDBzRzVw/ai5qcGc'); background-size: cover; background-position: center; height: 100vh;">
+    <div class="text-center">
+        <h1 class="display-4 font-weight-bold animated fadeIn">Bus Ticket Booking System</h1>
+        <p class="lead animated fadeIn delay-1s">Book your bus tickets with ease. Fast, convenient, and reliable travel options.</p>
+        <a href="{{ url_for('search') }}" class="btn btn-primary btn-lg px-5 py-3 mt-4 animated fadeIn delay-2s">Search Buses</a>
+    </div>
+</section>
+
+<!-- About Section with Animation -->
+<section class="about py-5 bg-light" data-aos="fade-up" data-aos-duration="1500">
+    <div class="container text-center">
+        <h2 class="mb-4">Why Choose Us?</h2>
+        <p>We make bus travel easier, faster, and more convenient. With our platform, you can search for buses, check availability, and book tickets in just a few clicks. Enjoy a seamless travel experience with us.</p>
+    </div>
+</section>
+
+<!-- How It Works Section with Icons and Animation -->
+<section class="how-it-works py-5 bg-dark text-light" data-aos="fade-up" data-aos-duration="1500">
+    <div class="container text-center">
+        <h2 class="mb-4">How It Works</h2>
+        <div class="row">
+            <div class="col-md-4" data-aos="flip-left" data-aos-duration="1000">
+                <div class="step">
+                    <i class="fas fa-search fa-3x mb-3"></i>
+                    <h4>Search for Buses</h4>
+                    <p>Enter your travel details and search for available buses.</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="flip-left" data-aos-duration="1200">
+                <div class="step">
+                    <i class="fas fa-ticket-alt fa-3x mb-3"></i>
+                    <h4>Book Your Ticket</h4>
+                    <p>Select your bus, choose your seat, and confirm your booking.</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="flip-left" data-aos-duration="1400">
+                <div class="step">
+                    <i class="fas fa-bus fa-3x mb-3"></i>
+                    <h4>Enjoy Your Journey</h4>
+                    <p>Hop on the bus and travel to your destination comfortably!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section with Animation -->
+<section class="testimonials py-5" data-aos="fade-up" data-aos-duration="1500">
+    <div class="container text-center">
+        <h2 class="mb-4">What Our Customers Say</h2>
+        <div class="row">
+            <div class="col-md-4" data-aos="zoom-in" data-aos-duration="1000">
+                <div class="testimonial">
+                    <p>"Booking a ticket was so easy, and the travel experience was smooth and comfortable!"</p>
+                    <h5>- John Doe</h5>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="zoom-in" data-aos-duration="1200">
+                <div class="testimonial">
+                    <p>"Great service! The bus was on time and the booking process was simple. Highly recommend!"</p>
+                    <h5>- Jane Smith</h5>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="zoom-in" data-aos-duration="1400">
+                <div class="testimonial">
+                    <p>"I love how fast and convenient it is to book my tickets. I will definitely use this system again."</p>
+                    <h5>- Mark Lee</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer Section -->
+<footer class="bg-dark text-white text-center py-4">
+    <p>&copy; 2025 Bus Ticket Booking System. All rights reserved.</p>
+    <div class="social-links">
+        <a href="#" class="text-white mx-2"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="text-white mx-2"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="text-white mx-2"><i class="fab fa-instagram"></i></a>
+    </div>
+    <a href="#top" class="btn btn-light mt-3" id="back-to-top">Back to Top</a>
+</footer>
+
+{% endblock %}
+
+{% block scripts %}
+<!-- Font Awesome for social icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+<!-- Animate on Scroll (AOS) for smooth animations -->
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+
+<!-- Scroll to Top functionality -->
+<script>
+    const backToTopButton = document.getElementById('back-to-top');
+    window.onscroll = function() {
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            backToTopButton.style.display = "block";
+        } else {
+            backToTopButton.style.display = "none";
+        }
+    };
+
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+</script>
+{% endblock %}
